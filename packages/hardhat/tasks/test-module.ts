@@ -59,6 +59,7 @@ task('test-module', 'test the reputation modul').setAction(async ({}, hre) => {
   for (let i = 0; i < 10; i++ ) {
 
     console.log('creating post '+i+'(tag)...');
+    console.log('tag'+i)
     const postDataStruct: PostDataStruct = {
       profileId: i+1,
       contentURI: 'tag'+i,
