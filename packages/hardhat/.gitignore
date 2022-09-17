@@ -15,7 +15,6 @@ build/
 /tasks/post.ts
 /tasks/follow.ts
 /tasks/collect.ts
-/tasks/test-module.ts
 
 /coverage
 coverage.json
