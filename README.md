@@ -1,6 +1,8 @@
 # SiC Monorepo
 
-## Backend
+## Getting started
+
+### 1. Backend
 
 Switch to the backend folder
 
@@ -10,23 +12,21 @@ $ yarn
 
 # 1. Terminal
 # start a local node
-$ yarn compile
+$ yarn hardhat:node
 
 # 2. Terminal
 # compile
-$ cd packages/hardhat && npx hardhat node
+$ yarn compile
 
 # deploy lens contracts
-$ yarn full-deploy-local
+$ yarn hardhat:full-deploy-local
 
 # deploy scripts/tests (modules)
 # TODO: Error: Unrecognized task test-module
 $ yarn hardhat:test-module:localhost
 ```
 
-## Frontend
-
-## Getting started
+### 2. Frontend
 
 ```bash
 # start app
