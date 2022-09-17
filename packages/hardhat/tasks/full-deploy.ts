@@ -2,6 +2,7 @@ import '@nomiclabs/hardhat-ethers';
 import { hexlify, keccak256, RLP } from 'ethers/lib/utils';
 import fs from 'fs';
 import { task } from 'hardhat/config';
+require('hardhat-abi-exporter');
 import {
   LensHub__factory,
   ApprovalFollowModule__factory,
@@ -106,14 +107,14 @@ task('full-deploy', 'deploys the entire Lens Protocol').setAction(async ({}, hre
     new CollectNFT__factory(deployer).deploy(hubProxyAddress, { nonce: deployerNonce++ })
   );
 
-  let data = lensHubImpl.interface.encodeFunctionData('initialize', [
+  const data = lensHubImpl.interface.encodeFunctionData('initialize', [
     LENS_HUB_NFT_NAME,
     LENS_HUB_NFT_SYMBOL,
     governance.address,
   ]);
 
   console.log('\n\t-- Deploying Hub Proxy --');
-  let proxy = await deployContract(
+  const proxy = await deployContract(
     new TransparentUpgradeableProxy__factory(deployer).deploy(
       lensHubImpl.address,
       proxyAdminAddress,

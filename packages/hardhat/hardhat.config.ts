@@ -97,6 +97,24 @@ const config: HardhatUserConfig = {
   etherscan: {
     apiKey: BLOCK_EXPLORER_KEY,
   },
+  abiExporter: [
+    {
+      path: './data/abi',
+      runOnCompile: true,
+      clear: true,
+      flat: true,
+      spacing: 2,
+      pretty: true,
+    },
+    {
+      path: '../react-app/src/contracts/abi',
+      runOnCompile: true,
+      clear: true,
+      flat: true,
+      spacing: 2,
+      pretty: true,
+    },
+  ],
 };
 
 export default config;
