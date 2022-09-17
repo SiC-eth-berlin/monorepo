@@ -19,7 +19,7 @@ import externalContracts from './contracts/external_contracts';
 // contracts
 import deployedContracts from './contracts/hardhat_contracts.json';
 import { Transactor, Web3ModalSetup } from './helpers';
-import { Home } from './views';
+import { Home, Feed, Account as AccountPage } from './views';
 import { useStaticJsonRPC } from './hooks';
 
 import {
@@ -202,21 +202,13 @@ function App(props) {
 
   const faucetAvailable = localProvider && localProvider.connection && targetNetwork.name.indexOf('local') !== -1;
 
-  console.log({ addresses });
-  console.log({ injectedProvider });
-
-  const RPC_HOST = 'http://localhost:8545';
-  //const provider = new ethers.providers.JsonRpcProvider(RPC_HOST);
   // https://github.com/dethcrypto/TypeChain/blob/master/examples/ethers-v5/src/index.ts
-  console.log({ 'lensHub proxy': addresses['lensHub proxy'] });
   const lensHubProxyContract = LensHub__factory.connect(addresses['lensHub proxy'], injectedProvider);
 
   const reputationModuleFactoryContract = ReputationModule__factory.connect(
     addresses['reputationModule'],
     injectedProvider,
   );
-  console.log({ lensHubProxyContract });
-  console.log({ reputationModuleFactoryContract });
 
   return (
     <>
@@ -238,7 +230,21 @@ function App(props) {
       >
         <Switch>
           <Route exact path="/">
-            <Home
+            <Feed
+              localProvider={localProvider}
+              readContracts={readContracts}
+              writeContracts={writeContracts}
+              lensContracts={{
+                LensHubProxy: lensHubProxyContract,
+                ReputationModuleFactory: reputationModuleFactoryContract,
+              }}
+              address={address}
+              price={price}
+              gasPrice={gasPrice}
+            />
+          </Route>
+          <Route exact path="/account">
+            <AccountPage
               localProvider={localProvider}
               readContracts={readContracts}
               writeContracts={writeContracts}
