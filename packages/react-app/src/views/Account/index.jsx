@@ -13,9 +13,6 @@ export default function Account({ localProvider, lensContracts, address, price, 
             <DarkContainer className="mb-2">
               <div className="flex justify-center text-lg">Account</div>
             </DarkContainer>
-            <Button color="blue" onClick={() => console.log('click')}>
-              Click me
-            </Button>
           </div>
         </div>
       </Col>
