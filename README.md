@@ -11,12 +11,12 @@ Switch to the backend folder
 $ yarn
 
 # 1. Terminal
-# start a local node
-$ yarn hardhat:node
-
-# 2. Terminal
 # compile
 $ yarn compile
+
+# 2. Terminal
+# start a local node
+$ yarn hardhat:node
 
 # deploy lens contracts
 $ yarn hardhat:full-deploy-local
