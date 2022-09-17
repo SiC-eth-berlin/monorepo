@@ -1,35 +1,34 @@
-# monorepo
+# SiC Monorepo
 
-## backend
+## Backend
 
 Switch to the backend folder
 
-```shell
-cd backend
+```bash
+# install ddependenciese
+$ yarn
+
+# 1. Terminal
+# start a local node
+$ cd packages/hardhat && npx hardhat node
+
+# 2. Terminal
+# compile
+$ yarn compile
+
+# deploy lens
+$ yarn full-deploy-local
+
+# deploy scripts/tests (modules)
+# TODO: Error: Unrecognized task test-module
+$ npx hardhat test-module --network localhost
 ```
 
-Start a local node in one shell
+## Frontend
 
-```shell
-npx hardhat node 
-```
+## Getting started
 
-Open another shell
-
-Compile the code
-
-```shell
-npm run compile
-```
-
-Deploy lens
-
-```shell
-npm run full-deploy-local
-```
-
-Deploy scripts/tests (modules)
-
-```shell
-npx hardhat test-module --network localhost
+```bash
+# start app
+$ yarn start
 ```

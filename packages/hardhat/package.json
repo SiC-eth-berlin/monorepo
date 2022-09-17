@@ -1,5 +1,5 @@
 {
-  "name": "@aave/lens-protocol",
+  "name": "@sic-monorepo/hardhat",
   "version": "1.0.2",
   "description": "Composable and decentralized social graph",
   "main": "index.js",
