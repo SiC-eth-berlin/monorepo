@@ -58,7 +58,6 @@ task('test-module', 'test the reputation modul').setAction(async ({}, hre) => {
 
   for (let i = 0; i < 10; i++) {
     console.log('creating post ' + i + '(tag)...');
-    console.log('tag' + i);
     const postDataStruct: PostDataStruct = {
       profileId: i + 1,
       contentURI: 'tag' + i,
@@ -69,6 +68,23 @@ task('test-module', 'test the reputation modul').setAction(async ({}, hre) => {
     };
 
     await waitForTx(lensHub.connect(user).post(postDataStruct));
+  }
+
+  for (let i = 0; i < 10; i++) {
+    console.log('creating post:' + i);
+    const commentDataStruct: CommentDataStruct = {
+      profileId: i + 1,
+      contentURI: 'post' + i,
+      profileIdPointed: i + 1,
+      pubIdPointed: 1,
+      referenceModuleData: [],
+      collectModule: freeCollectModule,
+      collectModuleInitData: defaultAbiCoder.encode(['bool'], [true]),
+      referenceModule: reputationModule.address,
+      referenceModuleInitData: [],
+    };
+
+    await waitForTx(lensHub.connect(user).comment(commentDataStruct));
   }
 
   for (let i = 0; i < 100; i++) {
