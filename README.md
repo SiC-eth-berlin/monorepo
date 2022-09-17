@@ -10,13 +10,13 @@ $ yarn
 
 # 1. Terminal
 # start a local node
-$ cd packages/hardhat && npx hardhat node
+$ yarn compile
 
 # 2. Terminal
 # compile
-$ yarn compile
+$ cd packages/hardhat && npx hardhat node
 
-# deploy lens
+# deploy lens contracts
 $ yarn full-deploy-local
 
 # deploy scripts/tests (modules)
