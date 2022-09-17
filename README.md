@@ -1,10 +1,15 @@
 # SiC Monorepo
 
+## The project
+
+We've added a reputation model ontop of the smart contracts of the [Lens Protocol](https://lens.xyz/).
+See `packages/hardhat/contracts/core/modules/reference/ReputationModule.sol`.
+
 ## Getting started
 
 ### 1. Backend
 
-Switch to the backend folder
+Cd in into the backend folder
 
 ```bash
 # install ddependenciese
@@ -31,8 +36,8 @@ $ yarn hardhat:test-module:localhost
 ```bash
 # IMPORTANT!!
 
+first
 delete `react-app/tsconfig.json` and `react-app/src/react-app-env.d.ts`
-
 
 # start app
 $ yarn start
