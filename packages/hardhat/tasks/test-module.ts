@@ -33,11 +33,11 @@ task('test-module', 'test the reputation modul').setAction(async ({}, hre) => {
   await waitForTx(lensHub.whitelistCollectModule(freeCollectModule, true));
   await waitForTx(lensHub.whitelistProfileCreator(user.address, true));
 
-  for(let i = 0; i < 10; i++) {
-    console.log('creating profile'+i+'...');
+  for (let i = 0; i < 10; i++) {
+    console.log('creating profile' + i + '...');
     const inputStruct: CreateProfileDataStruct = {
       to: user.address,
-      handle: 'profile'+i,
+      handle: 'profile' + i,
       imageURI:
         'https://ipfs.fleek.co/ipfs/ghostplantghostplantghostplantghostplantghostplantghostplan',
       followModule: ZERO_ADDRESS,
@@ -56,13 +56,12 @@ task('test-module', 'test the reputation modul').setAction(async ({}, hre) => {
     lensHub.connect(governance).whitelistReferenceModule(reputationModule.address, true)
   );
 
-  for (let i = 0; i < 10; i++ ) {
-
-    console.log('creating post '+i+'(tag)...');
-    console.log('tag'+i)
+  for (let i = 0; i < 10; i++) {
+    console.log('creating post ' + i + '(tag)...');
+    console.log('tag' + i);
     const postDataStruct: PostDataStruct = {
-      profileId: i+1,
-      contentURI: 'tag'+i,
+      profileId: i + 1,
+      contentURI: 'tag' + i,
       collectModule: freeCollectModule,
       collectModuleInitData: defaultAbiCoder.encode(['bool'], [true]),
       referenceModule: reputationModule.address,
@@ -72,18 +71,17 @@ task('test-module', 'test the reputation modul').setAction(async ({}, hre) => {
     await waitForTx(lensHub.connect(user).post(postDataStruct));
   }
 
-  for (let i = 0; i < 100; i++ ) {
+  for (let i = 0; i < 100; i++) {
     const profileId = getRandomInt(1, 11);
     const profileIdPointed = getRandomInt(1, 11);
-    let max = i/10
-    if (max < 1)
-      max =1
+    let max = i / 10;
+    if (max < 1) max = 1;
     const pubIdPointed = getRandomInt(1, max);
 
-    console.log('creating comment:'+i);
+    console.log('creating comment:' + i);
     const commentDataStruct: CommentDataStruct = {
       profileId: profileId,
-      contentURI: 'comment'+i,
+      contentURI: 'comment' + i,
       profileIdPointed: profileIdPointed,
       pubIdPointed: pubIdPointed,
       referenceModuleData: [],
@@ -96,7 +94,7 @@ task('test-module', 'test the reputation modul').setAction(async ({}, hre) => {
     try {
       await waitForTx(lensHub.connect(user).comment(commentDataStruct));
     } catch (error) {
-      console.log('failed creating comment, skipping..')
+      console.log('failed creating comment, skipping..');
     }
   }
 
