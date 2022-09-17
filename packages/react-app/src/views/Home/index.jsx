@@ -16,20 +16,25 @@ export default function Home({
 }) {
   const [balance, setBalance] = useState();
 
+  console.log({ address });
   useEffect(() => {
     async function getBalance() {
-      const reputation = await lensContracts.ReputationModuleFactory.getReputation('1');
+      const reputation = await lensContracts.ReputationModuleFactory.getReputation('0');
+      console.log('calling admin()');
+      //const admin = await lensContracts.LensHubProxy.admin();
+
       console.log('RESULT:');
       console.log({ reputation });
-      //const balance = await lensContracts.LensHub.balanceOf(address);
-      //console.log({ balance, reputation });
-      setBalance(balance);
+      //console.log({ admin });
+
+      const isWhitelisted = await lensContracts.LensHubProxy.balanceOf(address);
+      console.log({ isWhitelisted });
+      //setBalance(isWhitelisted);
     }
     getBalance();
-  }, [localProvider]);
+  }, [localProvider, address]);
 
   console.log({ lensContracts });
-  console.log({ balance });
   return (
     <Row gutter={[16, 24]} className="py-4">
       <Col className="gutter-row" md={8} xs={24}>

@@ -31,9 +31,9 @@ export default function Layout({
 
   const navigation = [
     { name: 'Home', href: '/', icon: HomeIcon },
-    { name: 'Account', href: '/', icon: HomeIcon },
-    { name: 'Feed', href: '/', icon: HomeIcon },
-    { name: 'New Post', href: '/', icon: HomeIcon },
+    { name: 'Account', href: '/account', icon: HomeIcon },
+    { name: 'Feed', href: '/feed', icon: HomeIcon },
+    { name: 'New Post', href: '/new-post', icon: HomeIcon },
   ];
 
   return (

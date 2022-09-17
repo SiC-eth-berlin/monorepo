@@ -206,18 +206,17 @@ function App(props) {
   console.log({ injectedProvider });
 
   const RPC_HOST = 'http://localhost:8545';
-  const provider = new ethers.providers.JsonRpcProvider(RPC_HOST);
-  //const provider = new ethers.providers.JsonRpcProvider(targetNetwork.rpcUrl);
   //const provider = new ethers.providers.JsonRpcProvider(RPC_HOST);
   // https://github.com/dethcrypto/TypeChain/blob/master/examples/ethers-v5/src/index.ts
-  const lensHubContract = LensHub__factory.connect(addresses['LensHub'], provider);
+  console.log({ 'lensHub proxy': addresses['lensHub proxy'] });
+  const lensHubProxyContract = LensHub__factory.connect(addresses['lensHub proxy'], injectedProvider);
+
   const reputationModuleFactoryContract = ReputationModule__factory.connect(
-    addresses['ReputationModule__factory'],
-    provider,
+    addresses['reputationModule'],
+    injectedProvider,
   );
-  console.log({ lensHubContract });
+  console.log({ lensHubProxyContract });
   console.log({ reputationModuleFactoryContract });
-  //const balance = await dai.balanceOf('0x70b144972C5Ef6CB941A5379240B74239c418CD4')
 
   return (
     <>
@@ -244,7 +243,7 @@ function App(props) {
               readContracts={readContracts}
               writeContracts={writeContracts}
               lensContracts={{
-                LensHub: lensHubContract,
+                LensHubProxy: lensHubProxyContract,
                 ReputationModuleFactory: reputationModuleFactoryContract,
               }}
               address={address}

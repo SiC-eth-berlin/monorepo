@@ -45,6 +45,8 @@ task('full-deploy', 'deploys the entire Lens Protocol').setAction(async ({}, hre
   const treasuryAddress = accounts[2].address;
   const proxyAdminAddress = deployer.address;
   const profileCreatorAddress = deployer.address;
+  console.log({ proxyAdminAddress });
+  console.log({ profileCreatorAddress });
 
   // Nonce management in case of deployment issues
   let deployerNonce = await ethers.provider.getTransactionCount(deployer.address);
@@ -297,9 +299,9 @@ task('full-deploy', 'deploys the entire Lens Protocol').setAction(async ({}, hre
 
   // Save and log the addresses
   const addrs = {
-    LensHub__factory: lensHub.address,
-    ReputationModule__factory: reputationModule.address,
-    LensHub: lensHubImpl.address,
+    reputationModule: reputationModule.address,
+    'lensHub proxy': lensHub.address,
+    'lensHub impl:': lensHubImpl.address,
     'publishing logic lib': publishingLogic.address,
     'interaction logic lib': interactionLogic.address,
     'follow NFT impl': followNFTImplAddress,
