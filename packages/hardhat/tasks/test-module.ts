@@ -100,19 +100,5 @@ task('test-module', 'test the reputation modul').setAction(async ({}, hre) => {
     }
   }
 
-  await waitForTx(
-    lensHub.connect(user).comment({
-      profileId: 1,
-      contentURI: 'ipfs://blarg',
-      profileIdPointed: 1,
-      pubIdPointed: 2,
-      referenceModuleData: [],
-      collectModule: freeCollectModule,
-      collectModuleInitData: defaultAbiCoder.encode(['bool'], [true]),
-      referenceModule: reputationModule.address,
-      referenceModuleInitData: [],
-    })
-  );
-
   console.log(ethers.BigNumber.from(await reputationModule.getReputation(1)).toNumber());
 });
