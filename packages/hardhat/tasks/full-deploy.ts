@@ -27,6 +27,7 @@ import {
   ProfileFollowModule__factory,
   RevertFollowModule__factory,
   ProfileCreationProxy__factory,
+  ReputationModule__factory,
 } from '../typechain-types';
 import { deployContract, waitForTx } from './helpers/utils';
 
@@ -290,10 +291,15 @@ task('full-deploy', 'deploys the entire Lens Protocol').setAction(async ({}, hre
     })
   );
 
+  const reputationModule = await deployContract(
+    new ReputationModule__factory(governance).deploy(lensHub.address)
+  );
+
   // Save and log the addresses
   const addrs = {
-    'lensHub proxy': lensHub.address,
-    'lensHub impl:': lensHubImpl.address,
+    LensHub__factory: lensHub.address,
+    ReputationModule__factory: reputationModule.address,
+    'lensHub impl': lensHubImpl.address,
     'publishing logic lib': publishingLogic.address,
     'interaction logic lib': interactionLogic.address,
     'follow NFT impl': followNFTImplAddress,

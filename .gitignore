@@ -12,6 +12,9 @@ packages/hardhat/cache*
 packages/**/data
 !packages/react-app/src/contracts/contracts.js
 
+# hardhat exports
+packages/react-app/src/typechain-types/*
+packages/react-app/src/addresses.json
 
 # ts
 packages/hardhat-ts/cache

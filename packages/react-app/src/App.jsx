@@ -22,6 +22,35 @@ import { Transactor, Web3ModalSetup } from './helpers';
 import { Home } from './views';
 import { useStaticJsonRPC } from './hooks';
 
+import {
+  LensHub__factory,
+  ApprovalFollowModule__factory,
+  CollectNFT__factory,
+  Currency__factory,
+  FreeCollectModule__factory,
+  FeeCollectModule__factory,
+  FeeFollowModule__factory,
+  FollowerOnlyReferenceModule__factory,
+  FollowNFT__factory,
+  InteractionLogic__factory,
+  LimitedFeeCollectModule__factory,
+  LimitedTimedFeeCollectModule__factory,
+  ModuleGlobals__factory,
+  PublishingLogic__factory,
+  RevertCollectModule__factory,
+  TimedFeeCollectModule__factory,
+  TransparentUpgradeableProxy__factory,
+  ProfileTokenURILogic__factory,
+  LensPeriphery__factory,
+  UIDataProvider__factory,
+  ProfileFollowModule__factory,
+  RevertFollowModule__factory,
+  ProfileCreationProxy__factory,
+  ReputationModule__factory,
+} from './typechain-types';
+
+import addresses from './addresses.json';
+
 const { ethers } = require('ethers');
 
 /// 📡 What chain are your contracts deployed to?
@@ -172,6 +201,17 @@ function App(props) {
   const walletIsConnected = injectedProvider && injectedProvider.getSigner && injectedProvider.getSigner()._isSigner;
 
   const faucetAvailable = localProvider && localProvider.connection && targetNetwork.name.indexOf('local') !== -1;
+
+  console.log({ addresses });
+  const provider = new ethers.providers.JsonRpcProvider(targetNetwork.rpcUrl);
+  const lensHubFactoryContract = LensHub__factory.connect(addresses['LensHub__factory'], provider);
+  const reputationModuleFactoryContract = ReputationModule__factory.connect(
+    addresses['ReputationModule__factory'],
+    provider,
+  );
+  console.log({ lensHubFactoryContract });
+  console.log({ reputationModuleFactoryContract });
+  //const balance = await dai.balanceOf('0x70b144972C5Ef6CB941A5379240B74239c418CD4')
 
   return (
     <>
