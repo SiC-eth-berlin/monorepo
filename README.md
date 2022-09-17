@@ -32,3 +32,11 @@ $ yarn hardhat:test-module:localhost
 # start app
 $ yarn start
 ```
+
+
+### Hardhat
+
+```bash
+# export abi
+$ yarn run hardhat export-abi --no-compile
+```
