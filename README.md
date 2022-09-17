@@ -21,7 +21,7 @@ $ yarn full-deploy-local
 
 # deploy scripts/tests (modules)
 # TODO: Error: Unrecognized task test-module
-$ npx hardhat test-module --network localhost
+$ yarn hardhat:test-module:localhost
 ```
 
 ## Frontend

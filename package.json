@@ -12,7 +12,7 @@
     "chain": "yarn workspace @sic-monorepo/hardhat chain",
     "fork": "yarn workspace @sic-monorepo/hardhat fork",
     "hardhat": "yarn workspace @sic-monorepo/hardhat hardhat",
-    "hardhat:test":  "yarn workspace @sic-monorepo/hardhat hardhat test-module --network localhost",
+    "hardhat:test-module:localhost": "yarn workspace @sic-monorepo/hardhat hardhat test-module --network localhost",
     "node": "yarn workspace @sic-monorepo/hardhat chain",
     "test": "yarn workspace @sic-monorepo/hardhat test",
     "start": "yarn workspace @sic-monorepo/react-app start",
