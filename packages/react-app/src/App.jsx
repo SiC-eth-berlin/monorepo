@@ -14,7 +14,7 @@ import 'graphiql/graphiql.min.css';
 import './App.css';
 import { Contract, Faucet, GasGauge, Ramp, NetworkDisplay, FaucetHint } from './components';
 import Layout from './Layout';
-import { NETWORKS } from './constants';
+import { NETWORKS, INFURA_ID } from './constants';
 import externalContracts from './contracts/external_contracts';
 // contracts
 import deployedContracts from './contracts/hardhat_contracts.json';
@@ -64,7 +64,7 @@ const web3Modal = Web3ModalSetup();
 
 // 🛰 providers
 const providers = [
-  'https://eth-mainnet.gateway.pokt.network/v1/lb/611156b4a585a20035148406',
+  //'https://eth-mainnet.gateway.pokt.network/v1/lb/611156b4a585a20035148406',
   //`https://eth-mainnet.alchemyapi.io/v2/${ALCHEMY_KEY}`,
 ];
 
@@ -203,13 +203,19 @@ function App(props) {
   const faucetAvailable = localProvider && localProvider.connection && targetNetwork.name.indexOf('local') !== -1;
 
   console.log({ addresses });
-  const provider = new ethers.providers.JsonRpcProvider(targetNetwork.rpcUrl);
-  const lensHubFactoryContract = LensHub__factory.connect(addresses['LensHub__factory'], provider);
+  console.log({ injectedProvider });
+
+  const RPC_HOST = 'http://localhost:8545';
+  const provider = new ethers.providers.JsonRpcProvider(RPC_HOST);
+  //const provider = new ethers.providers.JsonRpcProvider(targetNetwork.rpcUrl);
+  //const provider = new ethers.providers.JsonRpcProvider(RPC_HOST);
+  // https://github.com/dethcrypto/TypeChain/blob/master/examples/ethers-v5/src/index.ts
+  const lensHubContract = LensHub__factory.connect(addresses['LensHub'], provider);
   const reputationModuleFactoryContract = ReputationModule__factory.connect(
     addresses['ReputationModule__factory'],
     provider,
   );
-  console.log({ lensHubFactoryContract });
+  console.log({ lensHubContract });
   console.log({ reputationModuleFactoryContract });
   //const balance = await dai.balanceOf('0x70b144972C5Ef6CB941A5379240B74239c418CD4')
 
@@ -237,36 +243,14 @@ function App(props) {
               localProvider={localProvider}
               readContracts={readContracts}
               writeContracts={writeContracts}
+              lensContracts={{
+                LensHub: lensHubContract,
+                ReputationModuleFactory: reputationModuleFactoryContract,
+              }}
               address={address}
               price={price}
               gasPrice={gasPrice}
             />
-          </Route>
-          <Route exact path="/the-dao-contract">
-            <div className="flex w-full dark:bg-gray-800 p-4 my-4 rounded-lg">
-              <Contract
-                name="TheDAO"
-                price={price}
-                signer={userSigner}
-                provider={localProvider}
-                address={address}
-                blockExplorer={blockExplorer}
-                contractConfig={contractConfig}
-              />
-            </div>
-          </Route>
-          <Route exact path="/dark-dao-contract">
-            <div className="flex w-full dark:bg-gray-800 p-4 my-4 rounded-lg">
-              <Contract
-                name="DarkDAO"
-                price={price}
-                signer={userSigner}
-                provider={localProvider}
-                address={address}
-                blockExplorer={blockExplorer}
-                contractConfig={contractConfig}
-              />
-            </div>
           </Route>
         </Switch>
         {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}

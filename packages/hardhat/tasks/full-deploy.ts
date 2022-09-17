@@ -299,7 +299,7 @@ task('full-deploy', 'deploys the entire Lens Protocol').setAction(async ({}, hre
   const addrs = {
     LensHub__factory: lensHub.address,
     ReputationModule__factory: reputationModule.address,
-    'lensHub impl': lensHubImpl.address,
+    LensHub: lensHubImpl.address,
     'publishing logic lib': publishingLogic.address,
     'interaction logic lib': interactionLogic.address,
     'follow NFT impl': followNFTImplAddress,

@@ -12,7 +12,7 @@ export default function Header({ link, title, subTitle }) {
 }
 
 Header.defaultProps = {
-  link: 'https://github.com/ssteiger/sic-monorepo',
-  title: 'The DAO Hack',
-  subTitle: 'A simulation',
+  link: 'https://github.com/SiC-eth-berlin/monorepo',
+  title: 'SiC',
+  subTitle: 'ETH-Berlin',
 };

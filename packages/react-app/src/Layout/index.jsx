@@ -31,8 +31,9 @@ export default function Layout({
 
   const navigation = [
     { name: 'Home', href: '/', icon: HomeIcon },
-    { name: 'TheDAO', href: '/the-dao-contract', icon: CodeIcon },
-    { name: 'DarkDAO', href: '/dark-dao-contract', icon: CodeIcon },
+    { name: 'Account', href: '/', icon: HomeIcon },
+    { name: 'Feed', href: '/', icon: HomeIcon },
+    { name: 'New Post', href: '/', icon: HomeIcon },
   ];
 
   return (

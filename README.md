@@ -29,6 +29,11 @@ $ yarn hardhat:test-module:localhost
 ### 2. Frontend
 
 ```bash
+# IMPORTANT!!
+
+delete `react-app/tsconfig.json` and `react-app/src/react-app-env.d.ts`
+
+
 # start app
 $ yarn start
 ```
