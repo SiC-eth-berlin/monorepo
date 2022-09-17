@@ -2,24 +2,23 @@
 
 ## The project
 
-We've added a reputation model ontop of the smart contracts of the [Lens Protocol](https://lens.xyz/).
+We've added a reputation model on top of the smart contracts 
+of the [Lens Protocol](https://lens.xyz/).
 See `packages/hardhat/contracts/core/modules/reference/ReputationModule.sol`.
 
 ## Getting started
 
-### 1. Backend
+All commands should be done from the root directory.
 
-Cd in into the backend folder
+### 1. Compile the smart contract and deploy the example
 
 ```bash
-# install ddependenciese
+# install dependencies
 $ yarn
 
-# 1. Terminal
-# compile
+# compiles contracts
 $ yarn compile
 
-# 2. Terminal
 # start a local node
 $ yarn hardhat:node
 
@@ -31,21 +30,14 @@ $ yarn hardhat:full-deploy-local
 $ yarn hardhat:test-module:localhost
 ```
 
-### 2. Frontend
+### 2. Start the frontend server
 
 ```bash
 # IMPORTANT!!
+$ rm packages/react-app/tsconfig.json && rm packages/react-app/src/react-app-env.d.ts
+$ cp packages/hardhat/addresses.json packages/react-app/src
+$ cp -r packages/hardhat/typechain-types packages/react-app/src
 
-first
-delete `react-app/tsconfig.json` and `react-app/src/react-app-env.d.ts`
-
-# start app
+# start frontend application
 $ yarn start
-```
-
-### Hardhat
-
-```bash
-# export abi
-$ yarn run hardhat export-abi --no-compile
 ```
