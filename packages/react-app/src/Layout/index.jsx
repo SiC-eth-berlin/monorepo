@@ -125,7 +125,7 @@ export default function Layout({
       {/* static sidebar for desktop */}
       <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
         {/* sidebar component, swap this element with another sidebar if you like */}
-        <div className="flex flex-col flex-grow border-r border-gray-200 dark:border-gray-700 pt-5 bg-white dark:bg-gray-800 overflow-y-auto">
+        <div className="flex flex-col flex-grow border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 overflow-y-auto">
           <div className="flex items-center flex-shrink-0 px-4">
             <Header />
           </div>
